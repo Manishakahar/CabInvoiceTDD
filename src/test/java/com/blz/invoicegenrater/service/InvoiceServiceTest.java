@@ -1,5 +1,6 @@
 package com.blz.invoicegenrater.service;
 
+import com.blz.invoicegenrater.model.InvoiceSummary;
 import com.blz.invoicegenrater.model.Ride;
 import org.junit.Assert;
 import org.junit.Test;
@@ -35,4 +36,17 @@ public class InvoiceServiceTest {
         double totalFare = invoiceService.calculateFare(rides);
         Assert.assertEquals(45,totalFare,0.0);
     }
+
+    @Test
+    public  void givenMultipleRidesCase3_whenCalculateFare_ShouldReturnAggregateTotalFare() {
+        InvoiceService invoiceService = new InvoiceService();
+        Ride[] rides = {new Ride(2.0, 5),
+                new Ride(1.0, 5),
+                new Ride(0.1, 1)};
+        InvoiceSummary expectedSummery= new InvoiceSummary(3,45);
+        InvoiceSummary actualSummery=invoiceService.calculateFares(rides);
+        Assert.assertEquals(expectedSummery,actualSummery);
+    }
+
 }
+

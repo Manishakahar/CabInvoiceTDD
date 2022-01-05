@@ -1,5 +1,6 @@
 package com.blz.invoicegenrater.service;
 
+import com.blz.invoicegenrater.model.InvoiceSummary;
 import com.blz.invoicegenrater.model.Ride;
 
 public class InvoiceService {
@@ -18,5 +19,14 @@ public class InvoiceService {
             totalFare += calculateFare(ride.getDistance(),ride.getTime());
         }
         return  totalFare;
+    }
+    public InvoiceSummary calculateFares(Ride[] rides) {
+        double totalFare=0.0;
+        for(Ride ride:rides)
+        {
+            totalFare+=calculateFare(ride.getDistance(),ride.getTime());
+        }
+        System.out.println("rides : " +rides.length+" Fare : "+totalFare);
+        return new InvoiceSummary(rides.length,totalFare);
     }
 }
