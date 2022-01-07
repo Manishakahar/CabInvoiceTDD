@@ -33,7 +33,6 @@ public class InvoiceService {
     }
 
     public InvoiceSummary InvoiceSummary(String userName) {
-
         List<Ride> list = UserAccount.userMap.get(userName);
         double totalFare = 0.0;
         int rideCount = 0;
@@ -41,7 +40,6 @@ public class InvoiceService {
             totalFare += calculateFare(ride.getDistance(), ride.getTime());
             rideCount++;
         }
-
         return new InvoiceSummary(rideCount, (int) totalFare);
     }
 }
