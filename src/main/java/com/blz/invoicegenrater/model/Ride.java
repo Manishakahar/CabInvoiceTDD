@@ -1,8 +1,8 @@
 package com.blz.invoicegenrater.model;
 
 public class Ride {
-    private  double distance;
-    private  int time;
+    private double distance;
+    private int time;
 
     public Ride(double distance, int time) {
         this.distance = distance;

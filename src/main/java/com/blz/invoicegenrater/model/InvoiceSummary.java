@@ -13,8 +13,6 @@ public class InvoiceSummary {
         this.avgFare = this.totalFare / this.numOfRides;
     }
 
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -26,14 +24,5 @@ public class InvoiceSummary {
     @Override
     public int hashCode() {
         return Objects.hash(numOfRides, totalFare, avgFare);
-    }
-
-    @Override
-    public String toString() {
-        return "InvoiceSummary{" +
-                "numOfRides=" + numOfRides +
-                ", totalFare=" + totalFare +
-                ", avgFare=" + avgFare +
-                '}';
     }
 }

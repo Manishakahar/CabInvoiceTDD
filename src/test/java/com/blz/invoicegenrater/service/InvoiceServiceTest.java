@@ -5,6 +5,9 @@ import com.blz.invoicegenrater.model.Ride;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InvoiceServiceTest {
     @Test
     public void  givenDistanceAndTimeCase1_WhenCalculateFare_ShouldReturnTotalFare() {
@@ -47,6 +50,18 @@ public class InvoiceServiceTest {
         InvoiceSummary actualSummery=invoiceService.calculateFares(rides);
         Assert.assertEquals(expectedSummery,actualSummery);
     }
-
+    @Test
+    public void givenUserID_whenCalculateFare_shouldReturnAggregateSummery() {
+        InvoiceService invoiceService=new InvoiceService();
+        String userName= "Riya, Manisha, ,Pooja";
+        List<Ride> rideList=new ArrayList<>();
+        rideList.add(new Ride(2.0,5));
+        rideList.add(new Ride(1.0,5));
+        rideList.add(new Ride(0.1,1));
+        new UserAccount(userName,rideList);
+        InvoiceSummary expectedSummery= new InvoiceSummary(3,45.0);
+        InvoiceSummary actualSummery= invoiceService.InvoiceSummary(userName);
+        Assert.assertEquals(expectedSummery,actualSummery);
+    }
 }
 

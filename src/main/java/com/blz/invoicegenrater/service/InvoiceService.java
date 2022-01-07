@@ -3,6 +3,8 @@ package com.blz.invoicegenrater.service;
 import com.blz.invoicegenrater.model.InvoiceSummary;
 import com.blz.invoicegenrater.model.Ride;
 
+import java.util.List;
+
 public class InvoiceService {
    private final double COST_PER_KM = 10.0;
    private final int COST_PER_MIN = 1;
@@ -28,5 +30,18 @@ public class InvoiceService {
         }
         System.out.println("rides : " +rides.length+" Fare : "+totalFare);
         return new InvoiceSummary(rides.length,totalFare);
+    }
+
+    public InvoiceSummary InvoiceSummary(String userName) {
+
+        List<Ride> list = UserAccount.userMap.get(userName);
+        double totalFare = 0.0;
+        int rideCount = 0;
+        for (Ride ride : list) {
+            totalFare += calculateFare(ride.getDistance(), ride.getTime());
+            rideCount++;
+        }
+
+        return new InvoiceSummary(rideCount, (int) totalFare);
     }
 }
